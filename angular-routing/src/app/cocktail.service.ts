@@ -53,7 +53,7 @@ export class CocktailService {
   getById(id: string): Observable<Cocktail> {
     const url = `${CocktailService.baseUrl}/lookup.php?i=${id}`;
     return this.http.get(url).pipe(
-      delay(3000),
+      // delay(3000),
       map((result: CocktailDbResult) => this.mapResultToModel(result)),
       map((drinks: Array<Cocktail>) => {
         if (!drinks.length) {

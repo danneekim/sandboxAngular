@@ -52,7 +52,7 @@ const routes: Route[] = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

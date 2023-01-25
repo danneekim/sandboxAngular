@@ -6,10 +6,11 @@
       </a>
     </div>
     <div class="header-nav">
-      <a [routerLink]="['list']" class="nav-link nav-text">Home</a>
-      <a [routerLink]="['cocktail-details', '42']" class="nav-link nav-text">Details</a>
-      <a [routerLink]="['ingredients-list']" class="nav-link nav-text">Ingredients</a>
-      <a [routerLink]="['ingredients-details', 'Gin']" class="nav-link nav-text">Ingredient Details</a>
+      <a [routerLink]="['list']" class="nav-link nav-text">Cocktails List</a>
+      <!-- <a [routerLink]="['cocktail-details', '42']" class="nav-link nav-text">Details</a> -->
+      <a [routerLink]="['ingredients-list']" class="nav-link nav-text">Ingredients List</a>
+      <!-- <a [routerLink]="['ingredients-details', 'Gin']" class="nav-link nav-text">Ingredient Details</a> -->
+
       <a (click)="logIn()" *ngIf="!loggedIn" class="nav-link nav-text">Log In</a>
       <a (click)="logOut()" *ngIf="loggedIn" class="nav-link nav-text">Log Out</a>
     </div>
