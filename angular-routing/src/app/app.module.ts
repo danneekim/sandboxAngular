@@ -13,16 +13,22 @@ import { CocktailDetailsResolver } from "./cocktail-details.resolver";
 import { IngredientsListComponent } from "./ingredients-list/ingredients-list.component";
 import { IngredientsDetailsComponent } from "./ingredients-details/ingredients-details.component";
 import { UnauthorizedComponent } from "./unauthorized/unauthorized.component";
+import { AuthGuard } from "./auth.guard";
 
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
   {
     path: "cocktail-details/:id",
     component: CocktailsDetailsComponent,
+    canActivate: [AuthGuard],
     resolve: { cocktail: CocktailDetailsResolver },
   },
   { path: "ingredients-list", component: IngredientsListComponent },
-  { path: "ingredients-details/:name", component: IngredientsDetailsComponent },
+  {
+    path: "ingredients-details/:name",
+    component: IngredientsDetailsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
   { path: "unauthorized", component: UnauthorizedComponent },
