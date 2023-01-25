@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { CocktailDetailsResolver } from "./cocktail-details.resolver";
 import { IngredientsListComponent } from "./ingredients-list/ingredients-list.component";
+import { IngredientsDetailsComponent } from "./ingredients-details/ingredients-details.component";
 
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
@@ -20,6 +21,7 @@ const routes: Route[] = [
     resolve: { cocktail: CocktailDetailsResolver },
   },
   { path: "ingredients-list", component: IngredientsListComponent },
+  { path: "ingredients-details/:name", component: IngredientsDetailsComponent },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
 ];
@@ -31,6 +33,7 @@ const routes: Route[] = [
     CocktailsDetailsComponent,
     NotFoundPageComponent,
     IngredientsListComponent,
+    IngredientsDetailsComponent,
   ],
   imports: [
     BrowserModule,

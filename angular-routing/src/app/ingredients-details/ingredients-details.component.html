@@ -1,0 +1,16 @@
+<div class="card">
+  <div *ngIf="ingredient$ | async as ingredient" cds-layout="grid cols@sm:6 cols@md:auto align:horizontal">
+
+    <section>
+      <div class="card-header">
+        <h3>{{ingredient.strIngredient}}</h3>
+      </div>
+
+      <div class="card-block">
+        <h4>Description</h4>
+        <p>{{ ingredient.strDescription }}</p>
+
+      </div>
+    </section>
+  </div>
+</div>

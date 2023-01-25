@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { delay, map } from "rxjs/operators";
 import { Cocktail } from "./cocktail.model";
+import { Ingredient } from "./ingredient.model";
 
 interface CocktailDbDrink {
   idDrink: string;
@@ -73,6 +74,20 @@ export class CocktailService {
     );
   }
 
+  getIngredientsByName(name: string): Observable<Ingredient> {
+    const url = `${CocktailService.baseUrl}/search.php?i=${name}`;
+    return this.http.get(url).pipe(
+      map((result: any) => {
+        const { ingredients } = result;
+        if (!ingredients.length) {
+          throw new Error(`Ingredient with name ${name} not found.`);
+        }
+
+        return ingredients[0];
+      })
+    );
+  }
+
   private mapResultToModel(
     cocktailDbResult: CocktailDbResult
   ): Array<Cocktail> {
@@ -118,3 +133,4 @@ export class CocktailService {
     };
   }
 }
+export { Ingredient };
