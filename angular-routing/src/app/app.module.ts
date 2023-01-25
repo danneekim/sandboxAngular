@@ -12,6 +12,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { CocktailDetailsResolver } from "./cocktail-details.resolver";
 import { IngredientsListComponent } from "./ingredients-list/ingredients-list.component";
 import { IngredientsDetailsComponent } from "./ingredients-details/ingredients-details.component";
+import { UnauthorizedComponent } from "./unauthorized/unauthorized.component";
 
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
@@ -24,6 +25,7 @@ const routes: Route[] = [
   { path: "ingredients-details/:name", component: IngredientsDetailsComponent },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
+  { path: "unauthorized", component: UnauthorizedComponent },
 ];
 
 @NgModule({
@@ -34,6 +36,7 @@ const routes: Route[] = [
     NotFoundPageComponent,
     IngredientsListComponent,
     IngredientsDetailsComponent,
+    UnauthorizedComponent,
   ],
   imports: [
     BrowserModule,
