@@ -34,6 +34,7 @@ const routes: Route[] = [
     path: "admin",
     loadChildren: () =>
       import("./admin/admin.module").then((mod) => mod.AdminModule),
+    canLoad: [AuthGuard],
   },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
