@@ -29,9 +29,14 @@ const routes: Route[] = [
     component: IngredientsDetailsComponent,
     canActivate: [AuthGuard],
   },
+  { path: "unauthorized", component: UnauthorizedComponent },
+  {
+    path: "admin",
+    loadChildren: () =>
+      import("./admin/admin.module").then((mod) => mod.AdminModule),
+  },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
-  { path: "unauthorized", component: UnauthorizedComponent },
 ];
 
 @NgModule({
