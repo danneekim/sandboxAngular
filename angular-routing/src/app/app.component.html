@@ -6,12 +6,12 @@
       </a>
     </div>
     <div class="header-nav">
-      <a class="nav-link nav-text">Home</a>
+      <a [routerLink]="['list']" class="nav-link nav-text">Home</a>
     </div>
   </header>
   <div class="content-container">
     <div class="content-area">
-      <h1>Welcome to Cocktail recipes!</h1>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
