@@ -6,10 +6,12 @@ import { ClarityModule } from "@clr/angular";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CocktailsListComponent } from "./cocktails-list/cocktails-list.component";
 import { CocktailsDetailsComponent } from "./cocktails-details/cocktails-details.component";
+import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
   { path: "cocktail-details", component: CocktailsDetailsComponent },
   { path: "", pathMatch: "full", redirectTo: "list" },
+  { path: "**", component: NotFoundPageComponent },
 ];
 
 @NgModule({
@@ -17,6 +19,7 @@ const routes: Route[] = [
     AppComponent,
     CocktailsListComponent,
     CocktailsDetailsComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,
