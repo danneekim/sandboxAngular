@@ -11,10 +11,11 @@ import { CocktailService } from "../cocktail.service";
 })
 export class CocktailsDetailsComponent implements OnInit {
   // id: string;
-  cocktail$: Observable<Cocktail>;
+  // cocktail$: Observable<Cocktail>;
+  cocktail: Cocktail;
 
   constructor(
-    private activeRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private cocktailService: CocktailService
   ) {}
 
@@ -23,11 +24,15 @@ export class CocktailsDetailsComponent implements OnInit {
     //   .pipe(switchMap((paramsMap) => (this.id = paramsMap.get("id"))))
     //   .subscribe();
 
-    this.cocktail$ = this.activeRoute.paramMap.pipe(
-      switchMap((paramsMap) => {
-        const id = paramsMap.get("id");
-        return this.cocktailService.getById(id);
-      })
-    );
+    // this.cocktail$ = this.activeRoute.paramMap.pipe(
+    //   switchMap((paramsMap) => {
+    //     const id = paramsMap.get("id");
+    //     return this.cocktailService.getById(id);
+    //   })
+    // );
+
+    this.activatedRoute.data.subscribe((data: { cocktail: Cocktail }) => {
+      this.cocktail = data.cocktail;
+    });
   }
 }

@@ -9,10 +9,15 @@ import { CocktailsDetailsComponent } from "./cocktails-details/cocktails-details
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { CocktailDetailsResolver } from "./cocktail-details.resolver";
 
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
-  { path: "cocktail-details/:id", component: CocktailsDetailsComponent },
+  {
+    path: "cocktail-details/:id",
+    component: CocktailsDetailsComponent,
+    resolve: { cocktail: CocktailDetailsResolver },
+  },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
 ];
