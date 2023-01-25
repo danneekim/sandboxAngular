@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Cocktail } from './cocktail.model';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { delay, map } from "rxjs/operators";
+import { Cocktail } from "./cocktail.model";
 
 interface CocktailDbDrink {
   idDrink: string;
@@ -35,40 +35,43 @@ interface CocktailDbResult {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CocktailService {
-  static baseUrl = 'https://www.thecocktaildb.com/api/json/v1/1';
+  static baseUrl = "https://www.thecocktaildb.com/api/json/v1/1";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   listByFirstLetter(letter: string): Observable<Array<Cocktail>> {
     const url = `${CocktailService.baseUrl}/search.php?f=${letter}`;
-    return this.http.get(url)
+    return this.http
+      .get(url)
       .pipe(map((result: CocktailDbResult) => this.mapResultToModel(result)));
   }
 
   getById(id: string): Observable<Cocktail> {
     const url = `${CocktailService.baseUrl}/lookup.php?i=${id}`;
-    return this.http.get(url)
-      .pipe(
-        map((result: CocktailDbResult) => this.mapResultToModel(result)),
-        map((drinks: Array<Cocktail>) => {
-          if (!drinks.length) {
-            throw new Error(`Cocktail with id ${id} not found.`);
-          }
+    return this.http.get(url).pipe(
+      delay(3000),
+      map((result: CocktailDbResult) => this.mapResultToModel(result)),
+      map((drinks: Array<Cocktail>) => {
+        if (!drinks.length) {
+          throw new Error(`Cocktail with id ${id} not found.`);
+        }
 
-          return drinks[0];
-        })
-      );
+        return drinks[0];
+      })
+    );
   }
 
-  private mapResultToModel(cocktailDbResult: CocktailDbResult): Array<Cocktail> {
-      const drinks = cocktailDbResult?.drinks || [];
+  private mapResultToModel(
+    cocktailDbResult: CocktailDbResult
+  ): Array<Cocktail> {
+    const drinks = cocktailDbResult?.drinks || [];
 
-      return drinks
-        .map(drink => this.mapSingleDrinkToModel(drink))
-        .filter(drink => !!drink); // remove null values
+    return drinks
+      .map((drink) => this.mapSingleDrinkToModel(drink))
+      .filter((drink) => !!drink); // remove null values
   }
 
   private mapSingleDrinkToModel(drink: CocktailDbDrink): Cocktail | null {
@@ -103,6 +106,6 @@ export class CocktailService {
       glass: drink.strGlass,
       imageUrl: drink.strDrinkThumb,
       ingredients,
-    }; 
+    };
   }
 }
