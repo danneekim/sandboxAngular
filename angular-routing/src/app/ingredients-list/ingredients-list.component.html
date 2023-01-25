@@ -1,1 +1,5 @@
-<p>ingredients-list works!</p>
+<ol class="list">
+  <li *ngFor="let ingredient of ingredients$ |  async">
+    {{ingredient}} - <a [routerLink]="['/ingredients-details', ingredient]">See details</a>
+  </li>
+</ol>

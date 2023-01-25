@@ -64,6 +64,15 @@ export class CocktailService {
     );
   }
 
+  getIngredients(): Observable<Array<string>> {
+    const url = `${CocktailService.baseUrl}/list.php?i=list`;
+    return this.http.get(url).pipe(
+      map((result: { drinks: Array<{ strIngredient1: string }> }) => {
+        return result.drinks.map((d) => d.strIngredient1);
+      })
+    );
+  }
+
   private mapResultToModel(
     cocktailDbResult: CocktailDbResult
   ): Array<Cocktail> {
