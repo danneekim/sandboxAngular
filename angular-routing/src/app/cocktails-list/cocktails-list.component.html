@@ -1,1 +1,22 @@
-<p>cocktails-list works!</p>
+<table class="table">
+  <thead>
+    <th>#</th>
+    <th>Name</th>
+    <th>Category</th>
+    <th>Alcoholic</th>
+    <th>Glass</th>
+    <th>Ingredients</th>
+    <th>Details</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cocktail of cocktails$ | async; index as i">
+      <td>{{ i +1 }}</td>
+      <td>{{ cocktail.name}}</td>
+      <td>{{ cocktail.category}}</td>
+      <td>{{ cocktail.alcoholic}}</td>
+      <td>{{ cocktail.glass}}</td>
+      <td>{{ cocktail.ingredients.join(', ') }}</td>
+      <td><a [routerLink]="['/cocktail-details', cocktail.id]">See More</a></td>
+    </tr>
+  </tbody>
+</table>

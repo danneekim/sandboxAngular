@@ -7,6 +7,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CocktailsListComponent } from "./cocktails-list/cocktails-list.component";
 import { CocktailsDetailsComponent } from "./cocktails-details/cocktails-details.component";
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
   { path: "cocktail-details/:id", component: CocktailsDetailsComponent },
@@ -26,6 +29,8 @@ const routes: Route[] = [
     ClarityModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
