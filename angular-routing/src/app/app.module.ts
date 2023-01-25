@@ -9,7 +9,7 @@ import { CocktailsDetailsComponent } from "./cocktails-details/cocktails-details
 import { NotFoundPageComponent } from "./not-found-page/not-found-page.component";
 const routes: Route[] = [
   { path: "list", component: CocktailsListComponent },
-  { path: "cocktail-details", component: CocktailsDetailsComponent },
+  { path: "cocktail-details/:id", component: CocktailsDetailsComponent },
   { path: "", pathMatch: "full", redirectTo: "list" },
   { path: "**", component: NotFoundPageComponent },
 ];
